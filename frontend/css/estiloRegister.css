@@ -1,0 +1,73 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: arial;
+    background-image: url(../imagenes/login.PNG);
+    background-size: cover;        /* Hace que la imagen cubra toda la pantalla */
+    background-position: center;   /* Centra la imagen */
+    background-repeat: no-repeat;  /* Evita que se repita */
+    background-attachment: fixed;  /* Opcional: evita que se mueva al hacer scroll */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.Form-register {
+    width: 400px;
+    background: #323236;
+    padding: 30px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 4px;
+    font-family: 'calibri';
+    color: white;
+    box-shadow: 7px 13px 37px #000000;
+}
+
+.Form-register h4 {
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+.controls {
+    width: 100%;
+    background: #323236;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid #d35400;
+    font-family: 'calibri';
+    font-size: 18px;
+    color: white;
+}
+
+.Form-register p {
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 40px;
+}
+
+.Form-register a {
+    color: white;
+    text-decoration: none;
+}
+
+.Form-register a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.Form-register .buttons {
+    width: 100%;
+    background: #d35400;
+    border: none;
+    padding: 12px;
+    color: white;
+    margin: 16px 0;
+    font-size: 16px;
+}

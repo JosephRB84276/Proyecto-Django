@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factura Generada</title>
+    <link rel="stylesheet" href="{% static 'css/carrito.css' %}">
+    <style>
+        .factura-container { max-width: 800px; margin: 40px auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .factura-header { text-align: center; margin-bottom: 30px; }
+        .factura-header h1 { color: #2c3e50; }
+        .factura-info { display: flex; justify-content: space-between; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
+        .tabla-factura { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .tabla-factura th, .tabla-factura td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        .tabla-factura th { background: #f8f9fa; font-weight: 600; }
+        .total-final { text-align: right; font-size: 1.4em; font-weight: bold; color: #27ae60; margin-top: 20px; }
+        .btn-volver { display: inline-block; margin-top: 20px; padding: 10px 20px; background: #3498db; color: white; text-decoration: none; border-radius: 5px; }
+        .btn-volver:hover { background: #2980b9; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">
+            condimentos Sander
+            {% if user_authenticated %}
+                <span class="user-badge">👤 {{ user_name }}</span>
+            {% endif %}
+        </div>
+        <ul class="nav-menu">
+            <li><a href="{% url 'home' %}">Inicio</a></li>
+            
+            <li><a href="{% url 'quienes_somos' %}">¿Quienes somos?</a></li>
+            
+            <li><a href="{% url 'tienda' %}">Tienda</a></li>
+            
+            <li class="carrito-nav">
+                <a href="{% url 'ver_carrito' %}">
+                    🛒 Mi carrito 
+                    <span id="contador-carrito" class="contador">
+                        ({% if user_authenticated and carrito %}{{ carrito.cantidad_items }}{% else %}0{% endif %})
+                    </span>
+                </a>
+            </li> 
+            
+            {% if user_authenticated %}
+                <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
+                <li><a href="{% url 'registro' %}">Registrarse</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+    <div class="factura-container">
+        <div class="factura-header">
+            <h1>✅ Factura Generada Exitosamente</h1>
+            <p>Gracias por tu compra, <strong>{{ factura.nombres_cliente }} {{ factura.apellidos_cliente }}</strong></p>
+        </div>
+
+        <div class="factura-info">
+            <div>
+                <p><strong>Nº Factura:</strong> #{{ factura.id }}</p>
+                <p><strong>Fecha:</strong> {{ factura.fecha|date:"d/m/Y H:i" }}</p>
+            </div>
+            <div>
+                <p><strong>Cliente:</strong> {{ factura.nombres_cliente }} {{ factura.apellidos_cliente }}</p>
+                <p><strong>Estado:</strong> <span style="color: #27ae60;">{{ factura.estado|title }}</span></p>
+            </div>
+        </div>
+
+        <table class="tabla-factura">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Empaque</th>
+                    <th>Cant.</th>
+                    <th>Precio Unit.</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for detalle in factura.detalles.all %}
+                <tr>
+                    <td>{{ detalle.producto_nombre }}</td>
+                    <td>{{ detalle.tipo_empaque }}</td>
+                    <td>{{ detalle.cantidad }}</td>
+                    <td>${{ detalle.precio_unitario|floatformat:0 }}</td>
+                    <td>${{ detalle.subtotal|floatformat:0 }}</td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="5" style="text-align:center;">No hay detalles disponibles.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="total-final">
+            TOTAL: ${{ factura.total|floatformat:0 }}
+        </div>
+
+        <div style="text-align: center;">
+            <a href="{% url 'tienda' %}" class="btn-volver">🛒 Volver a la Tienda</a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Contactanos</h3>
+                <p>Telefono: +57 123 456 7890</p>
+                <p>Email: info@condimentossander.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Ubicación</h3>
+                <p>Calle Principal #123, Bogota D.C</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Condimentos Sander. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

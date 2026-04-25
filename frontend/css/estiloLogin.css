@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: arial;
+    background-image: url(../imagenes/login.PNG);
+    background-size: cover;        /* Hace que la imagen cubra toda la pantalla */
+    background-position: center;   /* Centra la imagen */
+    background-repeat: no-repeat;  /* Evita que se repita */
+    background-attachment: fixed;  /* Opcional: evita que se mueva al hacer scroll */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.Form-login {
+    width: 400px;
+    height: 400px;
+    background: #323236;
+    margin: auto;
+    margin-top: 180px;
+    box-shadow: 7px 13px 37px #000000;
+    padding: 20px 30px;
+    border-top: 4px solid #d35400;
+    color: white;
+}
+
+.Form-login h5 {
+    margin: 0;
+    text-align: center;
+    height: 40px;
+    margin-bottom: 30px;
+    border-bottom:  1px solid;
+    font-size: 20px;
+}
+
+.controls {
+    width: 100%;
+    border: 1px solid #d35400;
+    margin-bottom: 15px;
+    padding: 11px 10px;
+    background: #252323;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    caret-color: white;
+}
+
+.buttons {
+    width: 100%;
+    height: 40px;
+    background: #d35400;
+    border: none;
+    color: white;
+    margin-bottom: 16px;
+}
+
+.Form-login p {
+    margin: 15px 0;
+    height: 40px;
+    text-align: center;
+    border-bottom: 1px solid;
+}
+
+.Form-login a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.Form-login a:hover {
+    text-decoration: underline;
+}
+

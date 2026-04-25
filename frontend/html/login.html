@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/estiloLogin.css' %}">
+</head>
+<body>
+    <section class="Form-login">
+        <h5>Inicio de sesión</h5>
+        
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+    
+            <input class="controls" type="email" name="email" placeholder="Correo electrónico" required>
+            <input class="controls" type="password" name="password" placeholder="Contraseña" required>
+    
+            <input class="buttons" type="submit" value="Ingresar">
+        </form>
+
+        {% if messages %}
+        {% for message in messages %}
+        <p style="color: {% if message.tags == 'error' %}#dc3545{% else %}#28a745{% endif %}; margin-top: 10px;">
+            {{ message }}
+        </p>
+    {% endfor %}
+{% endif %}
+        </form>
+
+        <p><a href="#">¿Olvidó su contraseña?</a></p>
+        <!-- ✅ Enlace dinámico a registro -->
+        <p><a href="{% url 'registro' %}">¿No tienes una cuenta?</a></p>
+    </section> 
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+    <link rel="stylesheet" href="{% static 'css/estiloRegister.css' %}">
+</head>
+<body>
+    <section class="Form-register">
+        <h4>Formulario Registro</h4>
+        
+        <form method="post" action="{% url 'registro' %}">
+            {% csrf_token %}
+            
+            <input class="controls" type="text" name="nombres" placeholder="Nombres" required>
+            <input class="controls" type="text" name="apellidos" placeholder="Apellidos" required>
+            
+            <select class="controls" name="tipo_documento" required>
+                <option value="" disabled selected>Seleccione su documento</option>
+                <option value="CC">Cédula de ciudadanía</option>
+                <option value="CE">Cédula de extranjería</option>
+                <option value="TI">Tarjeta de identidad</option>
+                <option value="NIT">NIT</option>
+            </select>
+            
+            <input class="controls" type="text" name="numero_documento" placeholder="Numero de documento" required>
+            <input class="controls" type="text" name="ciudad" placeholder="Ciudad" required>
+            <input class="controls" type="text" name="direccion" placeholder="Direccion" required>
+            <input class="controls" type="text" name="telefono" placeholder="Telefono" required>
+            
+            <input class="controls" type="email" name="email" placeholder="Correo" required>
+            
+            <input class="controls" type="password" name="password1" placeholder="Contraseña" required>
+            <input class="controls" type="password" name="password2" placeholder="Confirmar contraseña" required>
+            
+            <p>Estoy de acuerdo con <a href="#">Terminos y condiciones</a></p>
+            <input class="buttons" type="submit" value="Registrarse">
+            
+            <!-- Mostrar errores de validación -->
+            {% if form.errors %}
+                <div style="color: #dc3545; margin-top: 10px; font-size: 0.9em;">
+                    {{ form.errors }}
+                </div>
+            {% endif %}
+            
+            <p><a href="{% url 'login' %}">¿Ya tienes una cuenta? Inicia sesión</a></p>
+        </form>
+    </section> 
+</body>
+</html>

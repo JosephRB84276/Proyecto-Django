@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Condimentos Sander</title>
+    <link rel="stylesheet" href="{% static 'css/home_estilo_nuevo.css' %}">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">
+            condimentos Sander
+            {% if user_authenticated %}
+                <span class="user-badge">👤 {{ user_name }}</span>
+            {% endif %}
+        </div>
+        <ul class="nav-menu">
+            <li><a href="{% url 'home' %}">Inicio</a></li>
+            
+            <li><a href="{% url 'quienes_somos' %}">¿Quienes somos?</a></li>
+            
+            <li><a href="{% url 'tienda' %}">Tienda</a></li>
+            
+            <li class="carrito-nav">
+                <a href="{% url 'ver_carrito' %}">
+                    🛒 Mi carrito 
+                    <span id="contador-carrito" class="contador">
+                        ({% if user_authenticated and carrito %}{{ carrito.cantidad_items }}{% else %}0{% endif %})
+                    </span>
+                </a>
+            </li> 
+            
+            {% if user_authenticated %}
+                <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
+                <li><a href="{% url 'registro' %}">Registrarse</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+    <!-- HERO PRINCIPAL -->
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <h1>Condimentos Sander</h1>
+            <p>"El sazon lo ponemos nosotros"</p>
+            <a href="{% url 'tienda' %}" class="btn btn-primary">Ver Tienda</a>
+        </div>
+    </header>
+
+    <!-- SECCION PRODUCTOS -->
+    
+    <section id="productos" class="productos">
+        <h2 class="section-title">Nuestros productos</h2>
+
+        <div class="productos-grid">
+
+            <div class="producto-card">
+                <img src="{% static 'imagenes/imagen2.PNG' %}" alt="Pasta de aji">
+                <h3>Pasta de Aji</h3>
+            </div>
+
+            <div class="producto-card">
+                <img src="{% static 'imagenes/imagen4.PNG' %}" alt="Pasta de ajo">
+                <h3>Pasta de Ajo</h3>
+            </div>
+
+            <div class="producto-card">
+                <img src="{% static 'imagenes/imagen6.PNG' %}" alt="Adobo">
+                <h3>Adobo</h3>
+            </div>
+
+            <div class="producto-card">
+                <img src="{% static 'imagenes/imagen5.PNG' %}" alt="Miel">
+                <h3>Miel</h3>
+            </div>
+
+            <div class="producto-card">
+                <img src="{% static 'imagenes/imagen3.PNG' %}" alt="Sumo de limón">
+                <h3>Sumo de Limón</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCION DESTACADOS -->
+    <section class="destacados">
+        <h2 class="section-title">Productos Destacados</h2>
+
+        <div class="destacados-grid">
+            <div class="destacado-card">
+                <img src="{% static 'imagenes/imagen2.PNG' %}" alt="Pasta de aji">
+                <h3>Pasta de AJI</h3>
+                <p>Pasta ideal para darle un poco de picor a tus comidas</p>
+                <a href="{% url 'tienda' %}" class="btn btn-secondary">Añadir al carrito</a>
+            </div>
+
+            <div class="destacado-card">
+                <img src="{% static 'imagenes/imagen4.PNG' %}" alt="Pasta de ajo">
+                <h3>Pasta de Ajo</h3>
+                <p>Perfecta para sazonar tus comidas con un sabor unico</p>
+                <a href="{% url 'tienda' %}" class="btn btn-secondary">Añadir al carrito</a>
+            </div>
+
+            <div class="destacado-card">
+                <img src="{% static 'imagenes/imagen6.PNG' %}" alt="Adobo">
+                <h3>Adobo</h3>
+                <p>El adobo que le da el toque especial a tus platillos</p>
+                <a href="{% url 'tienda' %}" class="btn btn-secondary">Añadir al carrito</a>
+            </div>
+        </div>
+    </section>
+
+        <!-- QUIENES SOMOS -->
+
+        <section id="quienes" class="quienes-somos">
+            <div class="qs-container">
+                <div class="qs-imagen">
+                    <img src="{% static 'imagenes/imagen1.PNG' %}" alt="productos">
+                </div>
+                <div class="qs-texto">
+                    <h2>¿Quiénes somos?</h2>
+                    <p>
+                        En Condimentos Sander, llevamos más de 15 años deleitando paladares con productos 100% naturales,
+                        elaborados con ingredientes seleccionados y recetas transmitidas de generación en generación.
+                        Nuestra pasión por los sabores auténticos y nuestro compromiso con la calidad nos han convertido en
+                        referentes en la producción de condimentos artesanales en Colombia.
+                    </p>
+                    <a class="btn btn-primary" href="{% url 'quienes_somos' %}">Conocer mas</a>
+                </div>
+            </div>
+        </section>
+    
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Contactanos</h3>
+                <p>Telefono: +57 123 456 7890</p>
+                <p>Email: info@condimentossander.com</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Horarios de atencios</h3>
+                <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+                <p>Sabados: 9:00 AM - 2:00 PM</p>
+                <p>Domingo: Cerrado</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Ubicación</h3>
+                <p>Calle Principal #123</p>
+                <p>Bogota D.C, Cundinamarca</p>
+                <p>Colombia</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Condimentos Sander. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script src="{% static 'js/carrito.js' %}"></script>
+</body>
+</html>

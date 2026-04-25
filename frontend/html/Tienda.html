@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda</title>
+    <link rel="stylesheet" href="{% static 'css/tienda.css' %}">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">
+            condimentos Sander
+            {% if user_authenticated %}
+                <span class="user-badge">👤 {{ user_name }}</span>
+            {% endif %}
+        </div>
+        <ul class="nav-menu">
+            <li><a href="{% url 'home' %}">Inicio</a></li>
+            
+            <li><a href="{% url 'quienes_somos' %}">¿Quienes somos?</a></li>
+            
+            <li><a href="{% url 'tienda' %}">Tienda</a></li>
+            
+            <li class="carrito-nav">
+                <a href="{% url 'ver_carrito' %}">
+                    🛒 Mi carrito 
+                    <span id="contador-carrito" class="contador">
+                        ({% if user_authenticated and carrito %}{{ carrito.cantidad_items }}{% else %}0{% endif %})
+                    </span>
+                </a>
+            </li> 
+            
+            {% if user_authenticated %}
+                <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
+                <li><a href="{% url 'registro' %}">Registrarse</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+    <!-- HERO PRINCIPAL -->
+    <header id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Condimentos Sander</h1>
+            <p>"Elige, combina y lleva el mejor sazón"</p>
+        </div>
+    </header>
+
+    <!-- SECCION PRODUCTOS -->
+    
+    <section id="productos" class="productos">
+        <h2 class="section-title">Tienda de Productos</h2>
+
+        <div class="container">
+
+            <div class="producto-card">
+                <img src="{% static 'imagenes/imagen2.PNG' %}" alt="Pasta de aji">
+                <h3>Pasta de Aji</h3>
+                <label>Empaque:</label>
+                <select class="form-select" data-producto="pasta_aji">
+                    <option value="2000">Copa - $2.000</option>
+                    <option value="10000">Six-pack - $10.000</option>
+                    <option value="4000">Media libra - $4.000</option>
+                    <option value="7500">Libra - $7.500</option>
+                    <option value="14000">Kilo - $14.000</option>
+                    <option value="20000">Medio mega - $20.000</option>
+                    <option value="38000">Galón - $38.000</option>
+                </select>
+
+                <label>Cantidad:</label>
+                <input type="number" class="form-control cantidad" value="1" min="1">
+                <button class="btn-secundary" 
+                        data-nombre="Pasta de ají"
+                        data-id="pasta_aji"
+                        data-img="{% static 'imagenes/imagen2.PNG' %}">
+                    Añadir al carrito
+                </button>
+            </div>
+
+            <div class="producto-card">
+                <img src="{% static 'imagenes/imagen4.PNG' %}" alt="Pasta de ajo">
+                <h3>Pasta de Ajo</h3>
+                <label>Empaque:</label>
+                <select class="form-select" data-producto="pasta_ajo">
+                    <option value="2500">Copa - $2.500</option>
+                    <option value="12000">Six-pack - $12.000</option>
+                    <option value="5000">Media libra - $5.000</option>
+                    <option value="9000">Libra - $9.000</option>
+                    <option value="16000">Kilo - $16.000</option>
+                    <option value="22000">Medio mega - $22.000</option>
+                    <option value="40000">Galón - $40.000</option>
+                </select>
+                <label>Cantidad:</label>
+                <input type="number" class="form-control cantidad" value="1" min="1">
+                <button class="btn-secundary" 
+                        data-nombre="Pasta de ajo"
+                        data-id="pasta_ajo"
+                        data-img="{% static 'imagenes/imagen4.PNG' %}">
+                    Añadir al carrito
+                </button>
+            </div>
+
+            <div class="producto-card">
+                <img src="{% static 'imagenes/imagen6.PNG' %}" alt="Adobo">
+                <h3>Adobo</h3>
+                <label>Empaque:</label>
+                <select class="form-select" data-producto="adobo">
+                    <option value="3000">Copa - $3.000</option>
+                    <option value="15000">Six-pack - $15.000</option>
+                    <option value="6000">Media libra - $6.000</option>
+                    <option value="11000">Libra - $11.000</option>
+                    <option value="20000">Kilo - $20.000</option>
+                    <option value="25000">Medio mega - $25.000</option>
+                    <option value="45000">Galón - $45.000</option>
+                </select>
+                <label>Cantidad:</label>
+                <input type="number" class="form-control cantidad" value="1" min="1">
+                <button class="btn-secundary" 
+                        data-nombre="Adobo"
+                        data-id="adobo"
+                        data-img="{% static 'imagenes/imagen6.PNG' %}">
+                    Añadir al carrito
+                </button>
+            </div>
+
+            <div class="producto-card">
+                <img src="{% static 'imagenes/imagen5.PNG' %}" alt="Miel">
+                <h3>Miel</h3>
+                <label>Empaque:</label>
+                <select class="form-select" data-producto="miel">
+                    <option value="3500">Copa - $3.500</option>
+                    <option value="18000">Six-pack - $18.000</option>
+                    <option value="7000">Media libra - $7.000</option>
+                    <option value="13000">Libra - $13.000</option>
+                    <option value="25000">Kilo - $25.000</option>
+                    <option value="30000">Medio mega - $30.000</option>
+                    <option value="50000">Galón - $50.000</option>
+                </select>
+                <label>Cantidad:</label>
+                <input type="number" class="form-control cantidad" value="1" min="1">
+                <button class="btn-secundary" 
+                        data-nombre="Miel"
+                        data-id="miel"
+                        data-img="{% static 'imagenes/imagen5.PNG' %}">
+                    Añadir al carrito   
+                </button>
+            </div>
+
+            <div class="producto-card">
+                <img src="{% static 'imagenes/imagen3.PNG' %}" alt="Sumo de limón">
+                <h3>Sumo de Limón</h3>
+                <label>Empaque:</label>
+                <select class="form-select" data-producto="sumo_limon">
+                    <option value="2500">Copa - $2.500</option>
+                    <option value="12000">Six-pack - $12.000</option>
+                    <option value="5000">Media libra - $5.000</option>
+                    <option value="9000">Libra - $9.000</option>
+                    <option value="16000">Kilo - $16.000</option>
+                    <option value="22000">Medio mega - $22.000</option>
+                    <option value="40000">Galón - $40.000</option>
+                </select>
+                <label>Cantidad:</label>
+                <input type="number" class="form-control cantidad" value="1" min="1">
+                <button class="btn-secundary" 
+                        data-nombre="Sumo de limón"
+                        data-id="sumo_limon"
+                        data-img="{% static 'imagenes/imagen3.PNG' %}">
+                    Añadir al carrito
+                </button>
+            </div>
+            <a href="{% url 'ver_carrito' %}" class="btn btn-primary"> Mi Carrito</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Contactanos</h3>
+                <p>Telefono: +57 123 456 7890</p>
+                <p>Email: info@condimentossander.com</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Horarios de atencios</h3>
+                <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+                <p>Sabados: 9:00 AM - 2:00 PM</p>
+                <p>Domingo: Cerrado</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Ubicación</h3>
+                <p>Calle Principal #123</p>
+                <p>Bogota D.C, Cundinamarca</p>
+                <p>Colombia</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Condimentos Sander. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+        <script>
+        console.log('🧪 PRUEBA DIRECTA - Si ves esto, JS funciona');
+    </script>
+    <script src="{% static 'js/Carrito.js' %}"></script>
+</body>
+</html>

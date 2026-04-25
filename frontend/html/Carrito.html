@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <link rel="stylesheet" href="{% static 'css/carrito.css' %}">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                Condimentos SANDER
+                {% if user_authenticated %}
+                    <span class="user-badge">👤 {{ user_name }}</span>
+                {% endif %}
+            </div>
+            <ul class="nav-menu">
+                <li><a href="{% url 'home' %}">Inicio</a></li>
+                <li><a href="{% url 'quienes_somos' %}">¿Quienes somos?</a></li>
+                <li><a href="{% url 'tienda' %}">Tienda</a></li>
+                <li class="carrito-nav">
+                    <a href="{% url 'ver_carrito' %}">
+                        🛒 Mi carrito 
+                        <span id="contador-carrito" class="contador">
+                            ({% if carrito %}{{ carrito.cantidad_items }}{% else %}0{% endif %})
+                        </span>
+                    </a>
+                </li> 
+                {% if user_authenticated %}
+                    <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
+                    <li><a href="{% url 'registro' %}">Registrarse</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    
+    <header class="hero">
+        <h1>Carrito de Compras</h1>
+    </header>
+
+    <section id="carrito" class="carrito-container">
+        <div class="carrito-grid">
+            <!-- Lado izquierdo: Productos -->
+            <div id="carrito-productos" class="carrito-productos">
+                <h2>Productos en tu carrito</h2>
+                
+                {% if items %}
+                    <div id="lista-carrito" class="lista-productos">
+                        {% for item in items %}
+                            <div class="carrito-item">
+                                <div class="item-info">
+                                    <h4>{{ item.producto_nombre }}</h4>
+                                    <p class="item-tipo">{{ item.tipo_empaque }}</p>
+                                    <p class="item-precio">$ {{ item.precio_unitario|floatformat:0 }}</p>
+                                </div>
+                                <div class="item-cantidad">
+                                    <label>Cantidad:</label>
+                                    <span>{{ item.cantidad }}</span>
+                                </div>
+                                <div class="item-subtotal">
+                                    <p>Subtotal: $ {{ item.subtotal|floatformat:0 }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <button onclick="vaciarCarrito()" class="btn btn-danger">
+                        Vaciar carrito
+                    </button>
+                {% else %}
+                    <div id="productos-vacios" class="carrito-vacio">
+                        <p>Tu carrito está vacío.</p>
+                        <a href="{% url 'tienda' %}" class="btn btn-primary">Volver a la tienda</a>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Lado derecho: Resumen -->
+            <div id="resumen-compra" class="resumen-compra">
+                <h2>Resumen de Compra</h2>
+                <div class="resumen-total">
+                    <p>Total: $ <span id="total-compra">{% if total %}{{ total|floatformat:0 }}{% else %}0{% endif %}</span></p>
+                </div>
+    
+                {% if items %}
+                <form method="post" action="{% url 'finalizar_compra' %}" id="form-finalizar">
+                {% csrf_token %}
+                    <button type="submit" id="finalizar-compra" class="btn btn-success">
+                        Finalizar Compra
+                    </button>
+                </form>
+                {% else %}
+                <button id="finalizar-compra" class="btn btn-success" disabled>
+                    Agrega productos para continuar
+                </button>
+                {% endif %}
+            </div>
+        
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Contactanos</h3>
+                <p>Telefono: +57 123 456 7890</p>
+                <p>Email: info@condimentossander.com</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Horarios de atencios</h3>
+                <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+                <p>Sabados: 9:00 AM - 2:00 PM</p>
+                <p>Domingo: Cerrado</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Ubicación</h3>
+                <p>Calle Principal #123</p>
+                <p>Bogota D.C, Cundinamarca</p>
+                <p>Colombia</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Condimentos Sander. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Pasar datos de Django a JavaScript -->
+    <script>
+        window.carritoItems = [
+            {% for item in items %}
+                {
+                    id: {{ item.id }},
+                    producto_nombre: "{{ item.producto_nombre }}",
+                    tipo_empaque: "{{ item.tipo_empaque }}",
+                    precio_unitario: {{ item.precio_unitario }},
+                    cantidad: {{ item.cantidad }}
+                }{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ];
+    </script>
+    
+    <script src="{% static 'js/carrito.js' %}"></script>
+</body>
+</html>

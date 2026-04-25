@@ -1,0 +1,223 @@
+
+:root {
+    --color-primary: #d35400;
+    --color-secondary: #2c3e50;
+    --color-light: #ecf0f1;
+    --color-white: #ffffff;
+    --color-text: #333333;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+.navbar {
+    background-color: var(--color-secondary);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+
+    /*flexbox para alinear los elementos del navbar*/
+    display: flex;
+    justify-content: space-between; /*espacio entre los elementos hijos (nav-logo y nav-menu)*/
+    align-items: center;
+}
+
+.nav-logo {
+    color: var(--color-white);
+    font-weight: bold; /* negrita para el texto */
+    font-size: 1.5rem; /* tamaño de fuente o letra */
+}
+
+.nav-menu {
+    display: flex;               /* Para alinear horizontalmente */
+    list-style: none;            /* Elimina puntitos */
+    gap: 2rem;                   /* Espacio entre links */
+}
+
+.nav-menu a {
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 500;            /* semi-negrita */
+    transition: color 0.3s ease; /* transición suave al cambiar de color */
+}
+
+.nav-menu a:hover {
+    color: var(--color-primary); /* color al pasar el mouse */
+}
+
+.contador {
+    background-color: #ee2020;
+    color: white;
+    font-size: 12px;
+    padding: 3px 7px;
+    border-radius: 50px;
+    margin-left: 5px;
+}
+
+
+.hero {
+    /* background: linear-gradient(135deg, var(--color-primary) 50%, black 100%); degradado de color */
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+        url(../imagenes/login.PNG);
+    background-size: cover;
+    background-position: center;
+    color: var(--color-white);
+    min-height: 400px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+
+.quienes-somos {
+    background-color: var(--color-light);
+    padding: 4rem 1rem ;
+}
+
+.mision, .vision {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    justify-content: space-between;
+}
+
+.vision {
+    border-top: 1px solid var(--color-secondary);
+    display: flex;
+    flex-direction: row-reverse; /* invierte el orden de los elementos hijos (imagen y texto) */
+    align-items: center;
+    gap: 2rem; /* espacio entre los elementos hijos */
+}
+
+.qs-texto {
+    flex: 1;
+    padding-left: 2rem;
+}
+
+.qs-texto h2 {
+    font-size: 2rem; /* tamaño de fuente para el título */
+    color: var(--color-secondary); /* color del título */
+    margin-bottom: 3rem; /* espacio debajo del título */
+    text-align: center; /* centra el texto del título */
+}
+
+.qs-texto p {
+    font-size: 1rem;
+    color: var(--color-text);
+    text-align: justify; /* justifica el párrafo a ambos lados */
+}
+
+.qs-imagen-mision img, .qs-imagen-vision img {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    max-width: 420px;
+}
+
+.historia {
+    max-width: 1200px;  /* ancho maximo del contenedor */
+    margin: 0 auto; /* centra el contenedor */
+    padding: 2rem 1rem;
+    align-items: center; /* alinea verticalmente al centro */
+    gap: 2rem; /* espacio entre los elementos hijos */
+    justify-content: space-between; /* espacio entre los elementos hijos */
+}
+
+.historia-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    display: flex; 
+    flex-direction: column; /* organiza los elementos en columna */
+    align-items: center;
+    gap: 2rem;
+}
+
+.historia-container .historia-texto {
+    flex: 1;
+    padding-right: 2rem;
+}
+
+.historia-imagen img {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    max-width: 500px;
+}
+
+.historia-contenido h2 {
+    font-size: 2rem; /* tamaño de fuente para el título */
+    color: var(--color-secondary); /* color del título */
+    margin-bottom: 3rem; /* espacio debajo del título */
+    text-align: center; /* centra el texto del título */
+}
+
+.historia-contenido p {
+    font-size: 1rem;
+    color: var(--color-text);
+    text-align: justify; /* justifica el párrafo a ambos lados */
+}
+
+
+/*footer*/
+
+.footer {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    padding: 2rem 1rem;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between; /* espacio entre los elementos hijos */
+    gap: 2rem; /* espacio entre los elementos hijos */
+}
+
+.footer-section {
+    flex: 1; /* para que cada sección ocupe el mismo espacio */
+    text-align: center; /* centra el texto dentro de cada sección */
+}
+
+.footer-section h3 {
+    font-size:  1.1rem;
+    margin-bottom: 1rem; /* espacio debajo del título de cada sección */
+    color: var(--color-primary);
+}
+
+.footer-section p {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem; /* espacio debajo de cada párrafo */
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 1.5rem; /* espacio encima del texto de copyright */
+    border-top: 1px solid rgba(255, 255, 255, 0.2); /* línea divisoria */
+    font-size: 0.9rem;
+
+}

@@ -1,0 +1,250 @@
+:root {
+    --color-primary: #d35400;
+    --color-secondary: #2c3e50;
+    --color-light: #ecf0f1;
+    --color-white: #ffffff;
+    --color-text: #333333;
+}
+
+
+/* reset: elimina estilos por defecto del navegador */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+
+
+.navbar {
+    background-color: var(--color-secondary);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    /*flexbox para alinear los elementos del navbar*/
+    display: flex;
+    justify-content: space-between; /*espacio entre los elementos hijos (nav-logo y nav-menu)*/
+    align-items: center;
+}
+
+.nav-logo {
+    color: var(--color-white);
+    font-weight: bold; /* negrita para el texto */
+    font-size: 1.5rem; /* tamaño de fuente o letra */
+}
+
+.nav-menu {
+    display: flex;               /* Para alinear horizontalmente */
+    list-style: none;            /* Elimina puntitos */
+    gap: 2rem;                   /* Espacio entre links */
+}
+
+.nav-menu a {
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 500;            /* semi-negrita */
+    transition: color 0.3s ease; /* transición suave al cambiar de color */
+}
+
+.nav-menu a:hover {
+    color: var(--color-primary); /* color al pasar el mouse */
+}
+
+
+.contador {
+    background-color: #ee2020;
+    color: white;
+    font-size: 12px;
+    padding: 3px 7px;
+    border-radius: 50px;
+    margin-left: 5px;
+}
+
+
+.hero {
+    /* background: linear-gradient(135deg, var(--color-primary) 50%, black 100%); degradado de color */
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+        url(../imagenes/login.PNG);
+    background-size: cover;
+    background-position: center;
+    color: var(--color-white);
+    min-height: 400px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+/* SECCIÓN DE PRODUCTOS */
+
+.productos {
+    padding: 3rem 1rem;
+    background-color: var(--color-light);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--color-secondary);
+}
+
+.container {
+    max-width: 1200px;
+    min-height: 480px;
+    margin: 0 auto;
+    display: grid; /* para alinear el contenido dentro de la tarjeta */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem
+}
+
+.producto-card {
+    background-color: var(--color-white);
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 1rem;
+    display: flex; /* para alinear el contenido dentro de la tarjeta */
+    flex-direction: column; /* para apilar el contenido verticalmente */
+    justify-content: space-between; /* para que el botón quede al final */
+    min-height: 450px;
+}
+
+.producto-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover; /* para que la imagen se ajuste sin distorsionarse */
+    border-radius: 10px;
+}
+
+.producto-card h3 {
+    margin: 1rem 0 0.5rem;
+    color: var(--color-text);
+    text-align: center;
+}
+
+.producto-card label {
+    font-weight: 600;
+    margin-top: 0.5rem;
+    color: var(--color-secondary);
+}
+
+.producto-card select {
+    margin-top: 0.5rem;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.form-control {
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: bold;
+    transition: all 0.3s ease; 
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    margin-bottom: 1rem;
+    text-align: center;
+    grid-column: 3;
+    grid-row: 2;
+    align-self: center;
+    justify-self: center;
+    width: auto;
+    max-width: 200px;
+}
+
+.btn-secundary {
+    margin-top: 1rem;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px 15px;
+}
+
+.btn-secundary:hover {
+    background-color: var(--color-secondary);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    transform: translateY(-3px);
+}
+.btn-secundary:active {
+    transform: translateY(0);
+}
+
+.producto-card:hover {
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    transform: translateY(-5px);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+
+/*footer*/
+
+.footer {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    padding: 2rem 1rem;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between; /* espacio entre los elementos hijos */
+    gap: 2rem; /* espacio entre los elementos hijos */
+}
+
+.footer-section {
+    flex: 1; /* para que cada sección ocupe el mismo espacio */
+    text-align: center; /* centra el texto dentro de cada sección */
+}
+
+.footer-section h3 {
+    font-size:  1.1rem;
+    margin-bottom: 1rem; /* espacio debajo del título de cada sección */
+    color: var(--color-primary);
+}
+
+.footer-section p {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem; /* espacio debajo de cada párrafo */
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 1.5rem; /* espacio encima del texto de copyright */
+    border-top: 1px solid rgba(255, 255, 255, 0.2); /* línea divisoria */
+    font-size: 0.9rem;
+
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quienes somos? - Condimentos SANDER</title>
+    <link rel="stylesheet" href="{% static 'css/quienes_somos.css' %}">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">
+            condimentos Sander
+            {% if user_authenticated %}
+                <span class="user-badge">👤 {{ user_name }}</span>
+            {% endif %}
+        </div>
+        <ul class="nav-menu">
+            <li><a href="{% url 'home' %}">Inicio</a></li>
+            
+            <li><a href="{% url 'quienes_somos' %}">¿Quienes somos?</a></li>
+            
+            <li><a href="{% url 'tienda' %}">Tienda</a></li>
+            
+            <li class="carrito-nav">
+                <a href="{% url 'ver_carrito' %}">
+                    🛒 Mi carrito 
+                    <span id="contador-carrito" class="contador">
+                        ({% if user_authenticated and carrito %}{{ carrito.cantidad_items }}{% else %}0{% endif %})
+                    </span>
+                </a>
+            </li> 
+            
+            {% if user_authenticated %}
+                <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
+                <li><a href="{% url 'registro' %}">Registrarse</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+    <!-- HERO PRINCIPAL -->
+    <header id="quienes" class="hero">
+        <div class="hero-content">
+            <h1>¿Quienes somos?</h1>
+        </div>
+    </header>
+
+    <!-- SECCION QUIENES SOMOS -->
+    <section class="quienes-somos">
+            <section id="mision" class="mision">
+                <div class="qs-imagen-mision">
+                    <img src="{% static 'imagenes/qs-imagen.PNG' %}" alt="aji">
+                </div>
+                <div class="qs-texto">
+                    <h2>Mision</h2>
+                    <p>
+                        Elaborar y comercializar condimentos y productos alimenticios de alta calidad, ofreciendo sabor, 
+                        frescura y confianza a nuestros clientes, mediante procesos responsables, 
+                        cumplimiento de las normas sanitarias y un compromiso constante con la mejora continua, 
+                        contribuyendo al bienestar de las familias colombianas y al desarrollo del sector alimentario.
+                    </p>
+                </div>
+            </section>
+
+            <section id="vision" class="vision">
+                <div class="qs-imagen-vision">
+                    <img src="{% static 'imagenes/qs-imagen2.PNG' %}" alt="aji">
+                </div>
+                <div class="qs-texto">
+                    <h2>Vision</h2>
+                    <p>
+                        Para el año 2030, Condimentos Sander será reconocida a nivel regional y nacional como una empresa líder en la producción de condimentos y productos alimenticios, 
+                        destacándose por su calidad, innovación, cumplimiento normativo y cercanía con sus clientes, 
+                        consolidándose como una marca confiable en los hogares y negocios del país.
+                    </p>
+                </div>
+            </section>
+    </section>
+    
+    <!-- SECCION HISTORIA -->
+    <section id="historia" class="historia">
+        <div class="historia-container">
+            <div class="historia-contenido">
+                <h2>Nuestra Historia</h2>
+                <p>
+                    Condimentos Sander nació en el año 1990 en la ciudad de Bogotá, Colombia, fundada por la familia Sander con el objetivo de ofrecer condimentos artesanales de alta calidad que realzaran los sabores de la cocina colombiana. 
+                    Lo que comenzó como un pequeño negocio familiar ha crecido hasta convertirse en una empresa reconocida a nivel nacional, 
+                    manteniendo siempre su compromiso con la calidad, la tradición y la satisfacción del cliente.
+                </p>
+            </div>
+            <div class="historia-imagen">
+                <img src="{% static 'imagenes/qs-imagen3.PNG' %}" alt="historia">        
+            </div>        
+        </div>
+    </section>
+
+        <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Contactanos</h3>
+                <p>Telefono: +57 123 456 7890</p>
+                <p>Email: info@condimentossander.com</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Horarios de atencios</h3>
+                <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+                <p>Sabados: 9:00 AM - 2:00 PM</p>
+                <p>Domingo: Cerrado</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Ubicación</h3>
+                <p>Calle Principal #123</p>
+                <p>Bogota D.C, Cundinamarca</p>
+                <p>Colombia</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Condimentos Sander. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
