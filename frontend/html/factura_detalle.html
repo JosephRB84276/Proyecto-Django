@@ -23,38 +23,42 @@
 
     <!-- NAVBAR -->
     <nav class="navbar">
-    <div class="nav-container">
-        <div class="nav-logo">
-            condimentos Sander
-            {% if user_authenticated %}
-                <span class="user-badge">👤 {{ user_name }}</span>
-            {% endif %}
+        <div class="nav-container">
+            <div class="nav-logo">
+                condimentos Sander
+                {% if user_authenticated %}
+                    <span class="user-badge">👤 {{ user_name }}</span>
+                {% endif %}
+            </div>
+            <ul class="nav-menu">
+                <li><a href="{% url 'home' %}">Inicio</a></li>           
+                <li><a href="{% url 'quienes_somos' %}">¿Quienes somos?</a></li>
+                <li><a href="{% url 'tienda' %}">Tienda</a></li>    
+                <li class="carrito-nav">
+                    <a href="{% url 'ver_carrito' %}">
+                        🛒 Mi carrito 
+                        <span id="contador-carrito" class="contador">({{ cart_count }})</span>
+                    </a>
+                </li> 
+            
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="#">👤 {{ user.nombres }} {{ user.apellidos }}</a>
+                </li>
+                <li>
+                    <a href="{% url 'logout' %}">Cerrar sesión</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{% url 'login' %}">Iniciar sesión</a>
+                </li>
+                <li>
+                    <a href="{% url 'registro' %}">Registrarse</a>
+                </li>
+                {% endif %}
+            </ul>
         </div>
-        <ul class="nav-menu">
-            <li><a href="{% url 'home' %}">Inicio</a></li>
-            
-            <li><a href="{% url 'quienes_somos' %}">¿Quienes somos?</a></li>
-            
-            <li><a href="{% url 'tienda' %}">Tienda</a></li>
-            
-            <li class="carrito-nav">
-                <a href="{% url 'ver_carrito' %}">
-                    🛒 Mi carrito 
-                    <span id="contador-carrito" class="contador">
-                        ({% if user_authenticated and carrito %}{{ carrito.cantidad_items }}{% else %}0{% endif %})
-                    </span>
-                </a>
-            </li> 
-            
-            {% if user_authenticated %}
-                <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
-            {% else %}
-                <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
-                <li><a href="{% url 'registro' %}">Registrarse</a></li>
-            {% endif %}
-        </ul>
-    </div>
-</nav>
+    </nav>
 
     <div class="factura-container">
         <div class="factura-header">

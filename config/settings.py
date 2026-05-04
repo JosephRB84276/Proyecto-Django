@@ -80,10 +80,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db_nueva.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'proyecto_condimentos_sander',
+        'USER': 'root',
+        'PASSWORD': 'IvanRB84276',
+        'HOST': 'localhost',
+        'PORT': '3306',
         'OPTIONS': {
-            'timeout': 20,
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         },
     }
 }
